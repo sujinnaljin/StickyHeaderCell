@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     //MARK:- properties
     let itemColor: [UIColor] = (0..<20).map { _ in .random()}
+    let stickyIndexPath = IndexPath(row: 1, section: 0)
     
     //MARK:- Life cycle
     override func viewDidLoad() {
@@ -21,6 +22,12 @@ class ViewController: UIViewController {
         collectionView.register(MyCell.self, forCellWithReuseIdentifier: MyCell.cellId)
         collectionView.dataSource = self
         collectionView.delegate = self
+        setFlowLayout()
+    }
+    
+    func setFlowLayout() {
+        let columnLayout = CustomCollectionViewFlowLayout(stickyIndexPath: stickyIndexPath)
+        self.collectionView.collectionViewLayout = columnLayout
     }
 }
 

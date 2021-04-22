@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     //MARK:- IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
     
+    //MARK:- properties
+    let itemColor: [UIColor] = (0..<20).map { _ in .random()}
+    
     //MARK:- Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +27,12 @@ class ViewController: UIViewController {
 //MARK:- UICollectionViewDelegate, UICollectionViewDataSource
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return itemColor.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCell.cellId, for: indexPath as IndexPath) as! MyCell
-        cell.backgroundColor = .red
+        cell.backgroundColor = itemColor[indexPath.row]
         return cell
     }
 }
